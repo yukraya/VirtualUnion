@@ -1,8 +1,8 @@
 #include "EditorState.hpp"
 
 //*Constructors & Destructors
-EditorState::EditorState(sf::RenderWindow &window)
-    :State(window)
+EditorState::EditorState(sf::RenderWindow &window, TileSet const &tileSet)
+    :State(window, tileSet)
 {
 
 }

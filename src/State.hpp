@@ -6,12 +6,13 @@
 #include <map>
 #include <string>
 #include <stack>
+#include "TileSet.hpp"
 
 class State
 {
     public:
     //*Constructors & Destructors
-        explicit State(sf::RenderWindow &window);
+        explicit State(sf::RenderWindow &window, TileSet const &tileSet);
         virtual ~State();
 
     //*Virtual Methods
@@ -21,6 +22,7 @@ class State
     protected:
     //*Attributes
         sf::RenderWindow &m_window;
+        TileSet const &m_tileSet;
 };
 
 #endif //STATE_HPP

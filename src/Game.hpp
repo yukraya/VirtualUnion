@@ -18,6 +18,7 @@ class Game
         void initWindow();
         void initKeybinds();
         void initState();
+        void initResources();
 
     //*Internal Functions
         void resetKeybinds();
@@ -40,6 +41,7 @@ class Game
         bool m_close;
 
         std::stack<std::unique_ptr<State>> m_state;
+        TileSet m_tileSet;
 };
 
 #endif //GAME_HPP

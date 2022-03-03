@@ -8,7 +8,7 @@ class EditorState
 {
     public:
     //*Constructors & Destructors
-        explicit EditorState(sf::RenderWindow &window);
+        explicit EditorState(sf::RenderWindow &window, TileSet const &tileSet);
         virtual ~EditorState();
 
     //*Virtual Methods (HERITED)

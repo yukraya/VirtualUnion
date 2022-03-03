@@ -5,3 +5,4 @@ list_dep = [
 ]
 
 subdir('src')
+subdir('resources')

@@ -24,9 +24,14 @@ void Game::initKeybinds()
     m_keybinds["RCLICK"] = false;
 }
 
+void Game::initResources()
+{
+    m_tileSet.read("../share/tileset/set.png");
+}
+
 void Game::initState()
 {
-    m_state.push(std::make_unique<EditorState>(m_window));
+    m_state.push(std::make_unique<EditorState>(m_window, m_tileSet));
 }
 
 //*Constructors & Destructors
@@ -35,6 +40,7 @@ Game::Game()
     m_close = false;
     initWindow();
     initKeybinds();
+    initResources();
     initState();
 }
 
