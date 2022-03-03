@@ -22,13 +22,13 @@ class Grid
 
     public:
     //*Constructors & Destructors
-        Grid()
+        explicit Grid()
         {
             m_size.x = 0;
             m_size.y = 0;
         }
 
-        Grid(std::size_t x, std::size_t y)
+        explicit Grid(std::size_t x, std::size_t y)
             :m_grid(x)
         {
             m_size.x = x;
@@ -47,6 +47,12 @@ class Grid
 
     //*Integrated Assignment Operator
         T& operator()(unsigned int const &x, unsigned int const &y)
+        {
+            assert(x < m_size.x && y < m_size.y && "Higher than array size");
+            return m_grid[x][y];
+        }
+
+        T const & operator()(unsigned int const &x, unsigned int const &y) const
         {
             assert(x < m_size.x && y < m_size.y && "Higher than array size");
             return m_grid[x][y];
@@ -75,7 +81,7 @@ class Grid
 
             m_size.x += size;
         }
-
+        
         void draw()
         {
             for(std::size_t i {0} ; i < m_size.y ; i++)
@@ -88,7 +94,7 @@ class Grid
             }
         }
 
-        Size getSize()
+        Size getSize() const
         {
             return m_size;
         }
