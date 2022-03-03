@@ -3,9 +3,9 @@
 //*Initialisation Functions
 void Game::initWindow()
 {
-    m_window = new sf::RenderWindow(sf::VideoMode(1080, 720), "Virtual");
-    m_window->setFramerateLimit(120);
-    m_window->setKeyRepeatEnabled(false);
+    m_window.create(sf::VideoMode(1080, 720), "Virtual");
+    m_window.setFramerateLimit(120);
+    m_window.setKeyRepeatEnabled(false);
 }
 
 void Game::initKeybinds()
@@ -24,18 +24,26 @@ void Game::initKeybinds()
     m_keybinds["RCLICK"] = false;
 }
 
+void Game::initState()
+{
+    m_state.push(std::make_unique<EditorState>(m_window));
+}
+
 //*Constructors & Destructors
 Game::Game()
 {
     m_close = false;
     initWindow();
     initKeybinds();
+    initState();
 }
 
 Game::~Game()
 {
-    delete m_window;
-    m_window = nullptr;
+    while(!(m_state.empty()))
+    {
+        m_state.pop();
+    }
 }
 
 //*Internal Functions
@@ -49,14 +57,14 @@ void Game::resetKeybinds()
 
 void Game::updateSFMLEvents()
 {
-    while(m_window->pollEvent(m_event))
+    while(m_window.pollEvent(m_event))
     {
         if(m_event.type == sf::Event::Closed)
         {
             m_close = true;
         }
 
-        if(m_window->hasFocus())
+        if(m_window.hasFocus())
         {
             if(m_event.type == sf::Event::KeyPressed)
             {
@@ -74,18 +82,35 @@ void Game::updateSFMLEvents()
     }
 }
 
+void Game::updateDFrame()
+{
+    m_dFrame = m_clock.restart().asSeconds();
+}
+
+void Game::updateState()
+{
+    if(!(m_state.empty()))
+    {
+        m_state.top()->update(m_dFrame);
+    }
+}
+
 //*Methods
 void Game::update()
 {
+    updateDFrame();
     resetKeybinds();
     updateSFMLEvents();
+    updateState();
 }
 
 void Game::render()
 {
-    m_window->clear();
+    m_window.clear();
 
-    m_window->display();
+    m_state.top()->render();
+
+    m_window.display();
 }
 
 void Game::run()
@@ -96,5 +121,5 @@ void Game::run()
         render();
     }
 
-    m_window->close();
+    m_window.close();
 }
