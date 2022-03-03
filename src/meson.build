@@ -1,4 +1,4 @@
-file_list = ['main.cpp']
+file_list = ['main.cpp', 'Game.cpp']
 
 executable('Virtual',
            file_list,
