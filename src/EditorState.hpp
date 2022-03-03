@@ -2,6 +2,7 @@
 #define EDITORSTATE_HPP
 
 #include "State.hpp"
+#include "TileMap.hpp"
 
 class EditorState
     :public State
@@ -16,6 +17,7 @@ class EditorState
         void render(sf::RenderTarget *target = nullptr);
 
     private:
+    
 };
 
 #endif //EDITORSTATE_HPP

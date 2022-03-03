@@ -4,6 +4,7 @@
 #include "TileSet.hpp"
 #include "Tile.hpp"
 #include "Grid.hpp"
+#include "MapLoader.hpp"
 
 class TileMap
 {
@@ -17,6 +18,8 @@ class TileMap
     private:
     //*Attributes
         TileSet const &m_tileSet;
+        MapLoader m_mapLoader;
+        
         std::vector<std::unique_ptr<Grid<std::unique_ptr<Tile>>>> m_tileMap;
 };
 

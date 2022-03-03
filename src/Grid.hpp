@@ -1,6 +1,8 @@
 #ifndef GRID_HPP
 #define GRID_HPP
 
+#include <fstream>
+#include <memory>
 #include <string>
 #include <vector>
 #include <cassert>
