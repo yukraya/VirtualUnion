@@ -9,6 +9,7 @@ class EditorState
 {
     public:
     //*Constructors & Destructors
+        explicit EditorState() = delete;
         explicit EditorState(sf::RenderWindow &window, TileSet const &tileSet);
         virtual ~EditorState();
 
@@ -17,7 +18,11 @@ class EditorState
         void render(sf::RenderTarget *target = nullptr);
 
     private:
-        TileMap m_tileMap;
+    //*Initialisation Functions
+        void initTileMap();
+
+    //*Attributes
+       std::unique_ptr<TileMap> m_tileMap;
 };
 
 #endif //EDITORSTATE_HPP

@@ -30,6 +30,7 @@ TileMap::TileMap(TileSet const &tileSet, std::string const &directory)
     :m_tileSet{tileSet}
 {
     m_mapLoader.read(directory);
+    loadingTileMap();
 }
 
 TileMap::~TileMap()
@@ -58,9 +59,15 @@ void TileMap::setTile(Tile const &tile, sf::Vector2u position, std::size_t const
     }
 }
 
+void TileMap::setView(sf::View const &view)
+{
+    m_view = view;
+}
+
 void TileMap::drawLayer(sf::RenderTarget *target, std::size_t layer) const
 {
     assert(layer < m_tileMap.size());
+    target->setView(m_view);
     for(std::size_t j {0} ; j < m_tileMapSize.y ; j++)
     {
         for(std::size_t k {0} ; k < m_tileMapSize.x ; k++)

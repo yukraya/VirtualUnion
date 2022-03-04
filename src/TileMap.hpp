@@ -18,6 +18,8 @@ class TileMap
         void setTile(unsigned int const &tile, sf::Vector2u position, std::size_t const &layer);
         void setTile(Tile const &tile, sf::Vector2u position, std::size_t const &layer);
 
+        void setView(sf::View const &view);
+
         void drawLayer(sf::RenderTarget *target, std::size_t layer) const;
         void render(sf::RenderTarget *target) const;
 
@@ -30,6 +32,7 @@ class TileMap
         TileSet const &m_tileSet;
         MapLoader m_mapLoader;
         Size m_tileMapSize;
+        sf::View m_view;
 
         std::vector<std::unique_ptr<Grid<std::unique_ptr<Tile>>>> m_tileMap;
 };

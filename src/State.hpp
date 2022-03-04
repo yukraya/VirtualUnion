@@ -12,6 +12,7 @@ class State
 {
     public:
     //*Constructors & Destructors
+        explicit State() = delete;
         explicit State(sf::RenderWindow &window, TileSet const &tileSet);
         virtual ~State();
 
