@@ -12,7 +12,7 @@ class TileSet
         ~TileSet();
 
     //*Integrated Assignment Operator
-        Tile const & operator[](unsigned int const &value) const;
+        Tile const & operator[](std::size_t const &value) const;
 
     //*Methods
         void read(std::string const &directory);
@@ -24,7 +24,6 @@ class TileSet
         sf::Texture m_texture;
         std::map<unsigned int, std::unique_ptr<Tile>> m_tileset;
         unsigned int m_tileCount;
-        
 };
 
 #endif //TILESET_HPP

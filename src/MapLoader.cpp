@@ -23,13 +23,15 @@ MapLoader::~MapLoader()
 //*Integrated Assignment Operator
 Grid<int> const & MapLoader::operator[](std::size_t const &y) const
 {
-    assert(y < m_map.size() && "");
+    assert(y < m_map.size() && "y is higher than the vector size");
     return *(m_map[y]);
 }
 
 //*Methods
 void MapLoader::read(std::string const &directory)
 {
+    m_map.clear();
+
     m_file.open(directory);
 
     if(m_file)
@@ -38,7 +40,6 @@ void MapLoader::read(std::string const &directory)
 
         for(std::size_t i {0} ; i < 10 ; i++) //10 layers
         {
-            std::cout << "Adding Layer : " << i << std::endl;
             m_map.push_back(std::make_unique<Grid<int>>(m_size.x, m_size.y));
 
             for(std::size_t j {0} ; j < m_size.y ; j++)

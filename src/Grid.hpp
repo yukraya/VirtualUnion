@@ -50,13 +50,13 @@ class Grid
     //*Integrated Assignment Operator
         T& operator()(unsigned int const &x, unsigned int const &y)
         {
-            assert(x < m_size.x && y < m_size.y && "Higher than array size");
+            assert(x < m_size.x && y < m_size.y && "Higher than grid size");
             return m_grid[x][y];
         }
 
         T const & operator()(unsigned int const &x, unsigned int const &y) const
         {
-            assert(x < m_size.x && y < m_size.y && "Higher than array size");
+            assert(x < m_size.x && y < m_size.y && "Higher than grid size");
             return m_grid[x][y];
         }
 
@@ -84,7 +84,7 @@ class Grid
             m_size.x += size;
         }
         
-        void draw()
+        void draw() const
         {
             for(std::size_t i {0} ; i < m_size.y ; i++)
             {

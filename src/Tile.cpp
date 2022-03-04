@@ -4,12 +4,23 @@
 Tile::Tile(sf::Texture const &texture, sf::IntRect const &rectangle)
     :m_sprite(texture, rectangle)
 {
-
+    
 }
 
 Tile::~Tile()
 {
     
+}
+
+//*Comparison Operator
+bool operator==(Tile const &lhs, Tile const &rhs)
+{
+    return lhs.m_sprite.getTextureRect() == rhs.m_sprite.getTextureRect();
+}
+
+bool operator!=(Tile const &lhs, Tile const &rhs)
+{
+    return !(lhs == rhs);
 }
 
 //*Methods
@@ -28,7 +39,7 @@ void Tile::update()
 
 }
 
-void Tile::render(sf::RenderTarget *target)
+void Tile::render(sf::RenderTarget *target) const
 {
     target->draw(m_sprite);
 }

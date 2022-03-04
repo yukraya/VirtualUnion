@@ -18,8 +18,8 @@ class TileMap
         void setTile(unsigned int const &tile, sf::Vector2u position, std::size_t const &layer);
         void setTile(Tile const &tile, sf::Vector2u position, std::size_t const &layer);
 
-        //TODO:Draw layer
-        void render(sf::RenderTarget *target);
+        void drawLayer(sf::RenderTarget *target, std::size_t layer) const;
+        void render(sf::RenderTarget *target) const;
 
 
     private:

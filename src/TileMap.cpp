@@ -16,7 +16,6 @@ void TileMap::loadingTileMap()
             }
         }
     }
-
 }
 
 //*Constructors & Destructors
@@ -41,31 +40,40 @@ TileMap::~TileMap()
 //*Methods
 void TileMap::setTile(unsigned int const &tile, sf::Vector2u position, std::size_t const &layer)
 {
-    //TODO: If same Tile...
-    m_tileMap[layer]->operator()(position.x, position.y).reset();
-    m_tileMap[layer]->operator()(position.x, position.y) = std::make_unique<Tile>(m_tileSet[tile]);
-    m_tileMap[layer]->operator()(position.x, position.y)->setPosition(sf::Vector2f((float)position.x * 32.f, (float)position.y * 32.f));
+    if(*(m_tileMap[layer]->operator()(position.x, position.y)) != m_tileSet[tile])
+    {
+        m_tileMap[layer]->operator()(position.x, position.y).reset();
+        m_tileMap[layer]->operator()(position.x, position.y) = std::make_unique<Tile>(m_tileSet[tile]);
+        m_tileMap[layer]->operator()(position.x, position.y)->setPosition(sf::Vector2f((float)position.x * 32.f, (float)position.y * 32.f));
+    }
 }
 
 void TileMap::setTile(Tile const &tile, sf::Vector2u position, std::size_t const &layer)
 {
-    //TODO: If same Tile...
-    m_tileMap[layer]->operator()(position.x, position.y).reset();
-    m_tileMap[layer]->operator()(position.x, position.y) = std::make_unique<Tile>(tile);
-    m_tileMap[layer]->operator()(position.x, position.y)->setPosition(sf::Vector2f((float)position.x * 32.f, (float)position.y * 32.f));
+    if(*(m_tileMap[layer]->operator()(position.x, position.y)) != tile)
+    {
+        m_tileMap[layer]->operator()(position.x, position.y).reset();
+        m_tileMap[layer]->operator()(position.x, position.y) = std::make_unique<Tile>(tile);
+        m_tileMap[layer]->operator()(position.x, position.y)->setPosition(sf::Vector2f((float)position.x * 32.f, (float)position.y * 32.f));
+    }
 }
 
-void TileMap::render(sf::RenderTarget *target)
+void TileMap::drawLayer(sf::RenderTarget *target, std::size_t layer) const
 {
-    for(std::size_t i {0} ; i < m_mapLoader.getSize() ; i++)
+    assert(layer < m_tileMap.size());
+    for(std::size_t j {0} ; j < m_tileMapSize.y ; j++)
     {
-        m_tileMap.push_back(std::make_unique<Grid<std::unique_ptr<Tile>>>(m_tileMapSize.x, m_tileMapSize.y));
-        for(std::size_t j {0} ; j < m_tileMapSize.y ; j++)
+        for(std::size_t k {0} ; k < m_tileMapSize.x ; k++)
         {
-            for(std::size_t k {0} ; k < m_tileMapSize.x ; k++)
-            {
-                m_tileMap[i]->operator()(k, j)->render(target);
-            }
+            m_tileMap[layer]->operator()(k, j)->render(target);
         }
+    }
+}
+
+void TileMap::render(sf::RenderTarget *target) const
+{
+    for(std::size_t i {0} ; i < m_tileMap.size() ; i++)
+    {
+        drawLayer(target, i);
     }
 }

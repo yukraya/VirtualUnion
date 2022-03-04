@@ -18,7 +18,7 @@ TileSet::~TileSet()
 }
 
 //*Integrated Assignment Operator
-Tile const & TileSet::operator[](unsigned int const &value) const
+Tile const & TileSet::operator[](std::size_t const &value) const
 {
     assert(value < m_tileCount);
     return *(m_tileset.at(value));
@@ -31,8 +31,6 @@ void TileSet::read(std::string const &directory)
     {
         for(unsigned int i {0} ; i < m_texture.getSize().x / 32 ; i++)
         {
-            std::cout << "New Tile : " << i << std::endl;
-            std::cout << "Texture size x : " << m_texture.getSize().x << std::endl;
             m_tileset[i] = std::make_unique<Tile>(m_texture, sf::IntRect(sf::Vector2i(32 * i, 0) , sf::Vector2i(32, 32)));
             m_tileCount++;
         }
