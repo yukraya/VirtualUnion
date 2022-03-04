@@ -39,7 +39,7 @@ void Tile::update()
 
 }
 
-void Tile::render(sf::RenderTarget *target) const
+void Tile::render(sf::RenderTarget &target) const
 {
-    target->draw(m_sprite);
+    target.draw(m_sprite);
 }

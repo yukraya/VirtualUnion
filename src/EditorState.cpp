@@ -30,5 +30,5 @@ void EditorState::render(sf::RenderTarget *target)
     {
         target = &m_window;
     }
-    m_tileMap->render(target);
+    m_tileMap->render(*target);
 }

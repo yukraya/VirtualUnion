@@ -64,10 +64,10 @@ void TileMap::setView(sf::View const &view)
     m_view = view;
 }
 
-void TileMap::drawLayer(sf::RenderTarget *target, std::size_t layer) const
+void TileMap::drawLayer(sf::RenderTarget &target, std::size_t layer) const
 {
     assert(layer < m_tileMap.size());
-    target->setView(m_view);
+    target.setView(m_view);
     for(std::size_t j {0} ; j < m_tileMapSize.y ; j++)
     {
         for(std::size_t k {0} ; k < m_tileMapSize.x ; k++)
@@ -77,7 +77,7 @@ void TileMap::drawLayer(sf::RenderTarget *target, std::size_t layer) const
     }
 }
 
-void TileMap::render(sf::RenderTarget *target) const
+void TileMap::render(sf::RenderTarget &target) const
 {
     for(std::size_t i {0} ; i < m_tileMap.size() ; i++)
     {

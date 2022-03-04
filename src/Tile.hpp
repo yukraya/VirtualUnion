@@ -26,7 +26,7 @@ class Tile
         void setPosition(sf::Vector2f const &position);
 
         void update();
-        void render(sf::RenderTarget *target) const;
+        void render(sf::RenderTarget &target) const;
 
     private:
     //*Attributes

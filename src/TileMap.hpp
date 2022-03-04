@@ -20,8 +20,8 @@ class TileMap
 
         void setView(sf::View const &view);
 
-        void drawLayer(sf::RenderTarget *target, std::size_t layer) const;
-        void render(sf::RenderTarget *target) const;
+        void drawLayer(sf::RenderTarget &target, std::size_t layer) const;
+        void render(sf::RenderTarget &target) const;
 
 
     private:
