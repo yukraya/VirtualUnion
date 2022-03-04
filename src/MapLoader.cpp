@@ -57,3 +57,13 @@ void MapLoader::read(std::string const &directory)
 
     m_file.close();
 }
+
+Size MapLoader::getLayerSize() const
+{
+    return m_size;
+}
+
+std::size_t MapLoader::getSize() const
+{
+    return m_map.size();
+}

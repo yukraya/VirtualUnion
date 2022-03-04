@@ -17,7 +17,7 @@ class EditorState
         void render(sf::RenderTarget *target = nullptr);
 
     private:
-    
+        TileMap m_tileMap;
 };
 
 #endif //EDITORSTATE_HPP

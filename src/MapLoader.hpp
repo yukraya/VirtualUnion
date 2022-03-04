@@ -17,6 +17,9 @@ class MapLoader
     //*Methods
         void read(std::string const &directory);
 
+        Size getLayerSize() const;
+        std::size_t getSize() const;
+
     private:
     //*Attributes
         std::vector<std::unique_ptr<Grid<int>>> m_map;
