@@ -3,6 +3,7 @@
 
 #include "State.hpp"
 #include "TileMap.hpp"
+#include "SystemFunctions.hpp"
 
 class EditorState
     :public State

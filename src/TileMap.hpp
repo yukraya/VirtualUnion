@@ -5,6 +5,7 @@
 #include "Tile.hpp"
 #include "Grid.hpp"
 #include "MapLoader.hpp"
+#include "SystemFunctions.hpp"
 
 class TileMap
 {

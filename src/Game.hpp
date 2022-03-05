@@ -1,6 +1,7 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
+#include "SystemFunctions.hpp"
 #include "EditorState.hpp"
 
 class Game

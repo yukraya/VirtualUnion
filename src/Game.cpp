@@ -26,7 +26,7 @@ void Game::initKeybinds()
 
 void Game::initResources()
 {
-    m_tileSet.read("../share/tileset/set.png");
+    m_tileSet.read(getProjectRootPath() + "/share/tileset/set.png");
 }
 
 void Game::initState()

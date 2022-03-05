@@ -3,7 +3,7 @@
 //*Initialisation Functions
 void EditorState::initTileMap()
 {
-    m_tileMap = std::make_unique<TileMap>(m_tileSet, "../share/editor/default.config");
+    m_tileMap = std::make_unique<TileMap>(m_tileSet, getProjectRootPath() + "/share/editor/default.config");
 }
 
 //*Constructors & Destructors

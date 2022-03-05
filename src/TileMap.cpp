@@ -22,7 +22,7 @@ void TileMap::loadingTileMap()
 TileMap::TileMap(TileSet const &tileSet, unsigned int id)
     :m_tileSet{tileSet}
 {
-    m_mapLoader.read("../share/map/map" + std::to_string(id) + ".config");
+    m_mapLoader.read(getProjectRootPath() + "/share/map/map" + std::to_string(id) + ".config");
     loadingTileMap();
 }
 
