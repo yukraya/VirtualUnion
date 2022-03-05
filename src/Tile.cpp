@@ -23,6 +23,12 @@ bool operator!=(Tile const &lhs, Tile const &rhs)
     return !(lhs == rhs);
 }
 
+//*Virtual Methods (HERITED)
+void Tile::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    target.draw(m_sprite, states);
+}
+
 //*Methods
 sf::Vector2f Tile::getPosition() const
 {

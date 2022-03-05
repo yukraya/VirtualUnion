@@ -72,7 +72,7 @@ void TileMap::drawLayer(sf::RenderTarget &target, std::size_t layer) const
     {
         for(std::size_t k {0} ; k < m_tileMapSize.x ; k++)
         {
-            m_tileMap[layer]->operator()(k, j)->render(target);
+            target.draw(*(m_tileMap[layer]->operator()(k, j)));
         }
     }
 }

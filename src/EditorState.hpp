@@ -4,6 +4,7 @@
 #include "State.hpp"
 #include "TileMap.hpp"
 #include "SystemFunctions.hpp"
+#include "Layer.hpp"
 
 class EditorState
     :public State
@@ -24,6 +25,8 @@ class EditorState
 
     //*Attributes
        std::unique_ptr<TileMap> m_tileMap;
+       Layer m_layer;
+       Tile* m_tile;
 };
 
 #endif //EDITORSTATE_HPP

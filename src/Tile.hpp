@@ -9,6 +9,7 @@
 #include <cassert>
 
 class Tile
+    :public sf::Drawable
 {
     public:
     //*Constructors & Destructors
@@ -21,9 +22,15 @@ class Tile
         friend bool operator==(Tile const &lhs, Tile const &rhs);
         friend bool operator!=(Tile const &lhs, Tile const &rhs);
 
+    //*Virtual Method (HERITED)
+        void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
     //*Methods
         sf::Vector2f getPosition() const;
         void setPosition(sf::Vector2f const &position);
+
+        //void setTexture();
+        //sf::Texture const & getTexture();
 
         void update();
         void render(sf::RenderTarget &target) const;

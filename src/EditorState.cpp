@@ -3,7 +3,7 @@
 //*Initialisation Functions
 void EditorState::initTileMap()
 {
-    m_tileMap = std::make_unique<TileMap>(m_tileSet, getProjectRootPath() + "/share/editor/default.config");
+    
 }
 
 //*Constructors & Destructors
@@ -21,7 +21,7 @@ EditorState::~EditorState()
 //*Methods
 void EditorState::update(float const &dFrame)
 {
-    m_tileMap->setTile(0, sf::Vector2u(5, 2), 9);
+    //m_tileMap->setTile(0, sf::Vector2u(5, 2), 9);
 }
 
 void EditorState::render(sf::RenderTarget *target)
@@ -30,5 +30,5 @@ void EditorState::render(sf::RenderTarget *target)
     {
         target = &m_window;
     }
-    m_tileMap->render(*target);
+    //target->draw(m_layer);
 }
