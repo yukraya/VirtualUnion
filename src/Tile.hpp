@@ -18,6 +18,9 @@ class Tile
         explicit Tile(Tile const &tile) = default;
         ~Tile();
 
+    //*Copy Assignment Operator
+        Tile& operator=(Tile const &tile);
+
     //*Comparison Operator
         friend bool operator==(Tile const &lhs, Tile const &rhs);
         friend bool operator!=(Tile const &lhs, Tile const &rhs);
@@ -29,8 +32,8 @@ class Tile
         sf::Vector2f getPosition() const;
         void setPosition(sf::Vector2f const &position);
 
-        //void setTexture();
-        //sf::Texture const & getTexture();
+        void setTexture(sf::Texture const &texture);
+        sf::Texture const * getTexture() const;
 
         void update();
         void render(sf::RenderTarget &target) const;

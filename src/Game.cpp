@@ -3,7 +3,7 @@
 //*Initialisation Functions
 void Game::initWindow()
 {
-    m_window.create(sf::VideoMode(1080, 720), "Virtual");
+    m_window.create(sf::VideoMode(1280, 720), "Virtual");
     m_window.setFramerateLimit(120);
     m_window.setKeyRepeatEnabled(false);
 }
@@ -22,6 +22,9 @@ void Game::initKeybinds()
 
     m_keybinds["LCLICK"] = false;
     m_keybinds["RCLICK"] = false;
+
+    m_keybinds["USCROLL"] = false;
+    m_keybinds["DSCROLL"] = false;
 }
 
 void Game::initResources()
@@ -31,7 +34,7 @@ void Game::initResources()
 
 void Game::initState()
 {
-    m_state.push(std::make_unique<EditorState>(m_window, m_tileSet));
+    m_state.push(std::make_unique<EditorState>(m_window, m_tileSet, m_keybinds));
 }
 
 //*Constructors & Destructors
@@ -83,6 +86,12 @@ void Game::updateSFMLEvents()
             {
                 if(m_event.mouseButton.button == sf::Mouse::Right) m_keybinds.at("RCLICK") = true;
                 if(m_event.mouseButton.button == sf::Mouse::Left) m_keybinds.at("LCLICK") = true;
+            }
+
+            if (m_event.type == sf::Event::MouseWheelScrolled)
+            {
+                if(m_event.mouseWheelScroll.delta > 0) m_keybinds.at("USCROLL") = true;
+                if(m_event.mouseWheelScroll.delta < 0) m_keybinds.at("DSCROLL") = true;
             }
         }
     }

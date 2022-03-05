@@ -12,7 +12,7 @@ class EditorState
     public:
     //*Constructors & Destructors
         explicit EditorState() = delete;
-        explicit EditorState(sf::RenderWindow &window, TileSet const &tileSet);
+        explicit EditorState(sf::RenderWindow &window, TileSet const &tileSet, std::map<std::string, bool> const &keybinds);
         virtual ~EditorState();
 
     //*Virtual Methods (HERITED)
@@ -21,12 +21,24 @@ class EditorState
 
     private:
     //*Initialisation Functions
-        void initTileMap();
+        void initView();
+        void initSprite();
+
+    //*Functions
+        void updateMousePosition();
+        void updateKeybinds();
+        void updateSelectPosition();
+        void updateView();
 
     //*Attributes
-       std::unique_ptr<TileMap> m_tileMap;
-       Layer m_layer;
-       Tile* m_tile;
+       TileMap m_tileMap;
+       sf::View m_mainView;
+       sf::RectangleShape m_selectSprite;
+       Layer layer;
+       sf::Vector2i m_mouseWindowPosition;
+       sf::Vector2f m_mouseMainViewPosition;
+       sf::Vector2u m_mouseGridPosition;
+       sf::Vector2f m_visibleTileCount;
 };
 
 #endif //EDITORSTATE_HPP

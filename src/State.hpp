@@ -13,7 +13,7 @@ class State
     public:
     //*Constructors & Destructors
         explicit State() = delete;
-        explicit State(sf::RenderWindow &window, TileSet const &tileSet);
+        explicit State(sf::RenderWindow &window, TileSet const &tileSet, std::map<std::string, bool> const &keybinds);
         virtual ~State();
 
     //*Virtual Methods
@@ -24,6 +24,7 @@ class State
     //*Attributes
         sf::RenderWindow &m_window;
         TileSet const &m_tileSet;
+        std::map<std::string, bool> const &m_keybinds;
 };
 
 #endif //STATE_HPP

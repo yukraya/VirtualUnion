@@ -41,33 +41,12 @@ TileMap::~TileMap()
 //*Methods
 void TileMap::setTile(unsigned int const &tile, sf::Vector2u position, std::size_t const &layer)
 {
-    if(*(m_tileMap[layer]->operator()(position.x, position.y)) != m_tileSet[tile])
-    {
-        m_tileMap[layer]->operator()(position.x, position.y).reset();
-        m_tileMap[layer]->operator()(position.x, position.y) = std::make_unique<Tile>(m_tileSet[tile]);
-        m_tileMap[layer]->operator()(position.x, position.y)->setPosition(sf::Vector2f((float)position.x * 32.f, (float)position.y * 32.f));
-    }
-}
-
-void TileMap::setTile(Tile const &tile, sf::Vector2u position, std::size_t const &layer)
-{
-    if(*(m_tileMap[layer]->operator()(position.x, position.y)) != tile)
-    {
-        m_tileMap[layer]->operator()(position.x, position.y).reset();
-        m_tileMap[layer]->operator()(position.x, position.y) = std::make_unique<Tile>(tile);
-        m_tileMap[layer]->operator()(position.x, position.y)->setPosition(sf::Vector2f((float)position.x * 32.f, (float)position.y * 32.f));
-    }
-}
-
-void TileMap::setView(sf::View const &view)
-{
-    m_view = view;
+    *(m_tileMap[layer]->operator()(position.x, position.y)) = m_tileSet[tile];
 }
 
 void TileMap::drawLayer(sf::RenderTarget &target, std::size_t layer) const
 {
     assert(layer < m_tileMap.size());
-    target.setView(m_view);
     for(std::size_t j {0} ; j < m_tileMapSize.y ; j++)
     {
         for(std::size_t k {0} ; k < m_tileMapSize.x ; k++)

@@ -4,12 +4,18 @@
 Tile::Tile(sf::Texture const &texture, sf::IntRect const &rectangle)
     :m_sprite(texture, rectangle)
 {
-    
+
 }
 
 Tile::~Tile()
 {
     
+}
+
+Tile& Tile::operator=(Tile const &tile)
+{
+    m_sprite.setTextureRect(tile.m_sprite.getTextureRect());
+    return *this;
 }
 
 //*Comparison Operator
@@ -38,6 +44,16 @@ sf::Vector2f Tile::getPosition() const
 void Tile::setPosition(sf::Vector2f const &position)
 {
     m_sprite.setPosition(position);
+}
+
+void Tile::setTexture(sf::Texture const &texture)
+{
+    m_sprite.setTexture(texture);
+}
+
+sf::Texture const * Tile::getTexture() const
+{
+    return m_sprite.getTexture();
 }
 
 void Tile::update()
