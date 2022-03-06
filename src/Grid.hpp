@@ -42,6 +42,8 @@ class Grid
             }
         }
 
+        Grid(Grid&&) = default;
+
         ~Grid()
         {
 
@@ -50,13 +52,13 @@ class Grid
     //*Integrated Assignment Operator
         T& operator()(unsigned int const &x, unsigned int const &y)
         {
-            assert(x < m_size.x && y < m_size.y && "Higher than grid size");
+            assert(x < m_size.x && y < m_size.y && "x or y is higher than the grid size");
             return m_grid[x][y];
         }
 
         T const & operator()(unsigned int const &x, unsigned int const &y) const
         {
-            assert(x < m_size.x && y < m_size.y && "Higher than grid size");
+            assert(x < m_size.x && y < m_size.y && "x or y is higher than grid size");
             return m_grid[x][y];
         }
 
@@ -68,7 +70,7 @@ class Grid
             {
                 for(std::size_t j {0} ; j < size ; j++)
                 {
-                    m_grid[i].push_back();
+                    m_grid[i].emplace_back();
                 }
             }
              m_size.y += size;
@@ -78,22 +80,10 @@ class Grid
             assert(size > 0 && "Size is lower than 0");
             for(std::size_t i {0} ; i < size ; i++)
             {
-                m_grid.push_back(std::vector<T>(m_size.y));
+                m_grid.emplace_back(std::vector<T>(m_size.y));
             }
 
             m_size.x += size;
-        }
-        
-        void draw() const
-        {
-            for(std::size_t i {0} ; i < m_size.y ; i++)
-            {
-                for(std::size_t j {0} ; j < m_size.x ; j++)
-                {
-                    std::cout << m_grid[j][i];
-                }
-                std::cout << std::endl;
-            }
         }
 
         Size getSize() const

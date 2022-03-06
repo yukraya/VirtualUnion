@@ -31,7 +31,7 @@ class TileMap
         MapLoader m_mapLoader;
         Size m_tileMapSize;
 
-        std::vector<std::unique_ptr<Grid<std::unique_ptr<Tile>>>> m_tileMap;
+        std::vector<Grid<std::unique_ptr<Tile>>> m_tileMap;
 };
 
 #endif //TILEMAP_HPP
